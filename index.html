@@ -1,0 +1,1697 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Insta Photography | Capture Your Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-soft: #e0edff;
+      --secondary: #0f172a;
+      --bg: #f4f7ff;
+      --white: #ffffff;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --transition-fast: 0.25s ease;
+      --transition-slow: 0.45s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e5efff 0, #f8fafc 45%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Layout helpers */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 0;
+      }
+    }
+
+    /* ================= NAVBAR ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 250, 252, 0.85);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    .brand-text {
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.5);
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: var(--white);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .nav-cta span {
+      font-size: 1.05rem;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(255, 255, 255, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #0f172a;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-toggle span::before {
+      position: absolute;
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      position: absolute;
+      top: 6px;
+    }
+
+    .nav-toggle.active span {
+      background: transparent;
+    }
+
+    .nav-toggle.active span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.active span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(248, 250, 252, 0.98);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        padding: 0.75rem 1.5rem 1rem;
+        gap: 0.9rem;
+      }
+
+      .nav-cta.mobile-open {
+        display: inline-flex;
+        margin-top: 0.25rem;
+      }
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.6rem;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.07);
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      font-size: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.1rem);
+      line-height: 1.15;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-quote {
+      font-size: 0.92rem;
+      color: #4b5563;
+      border-left: 3px solid rgba(37, 99, 235, 0.75);
+      padding-left: 0.9rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(37, 99, 235, 0.6);
+      filter: brightness(1.03);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1e293b;
+      cursor: pointer;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .mini-quote {
+      font-size: 0.78rem;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #2563eb;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #e0ecff 0, #eff4ff 40%, #ffffff 100%);
+      border-radius: 28px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(209, 213, 219, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main-photo {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      margin-bottom: 1rem;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-main-photo img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transform: scale(1.03);
+      transform-origin: center;
+      transition: transform 4s ease-out;
+    }
+
+    .hero-card:hover .hero-main-photo img {
+      transform: scale(1.07);
+    }
+
+    .photo-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      color: #475569;
+      margin-bottom: 0.6rem;
+    }
+
+    .photo-pill {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-note {
+      font-weight: 500;
+      color: #0f172a;
+    }
+
+    .hero-note span {
+      color: #2563eb;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 1.1rem;
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .hero-stat span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .floating-tag {
+      position: absolute;
+      right: -12px;
+      top: 16%;
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.55);
+      transform: translateY(0);
+      animation: float 4.5s ease-in-out infinite;
+    }
+
+    .floating-tag strong {
+      color: #f97316;
+    }
+
+    .floating-tag-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .floating-tag {
+        right: 6px;
+        top: -10px;
+      }
+    }
+
+    /* ================= SECTION HEADINGS ================= */
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #60a5fa;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .about-card h3 {
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-card p {
+      font-size: 0.92rem;
+      color: #4b5563;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-highlight {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #2563eb;
+      margin-top: 0.4rem;
+    }
+
+    .about-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+      font-size: 0.85rem;
+    }
+
+    .meta-item span {
+      display: block;
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .meta-item strong {
+      color: #0f172a;
+    }
+
+    .about-quote {
+      margin-top: 1.4rem;
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      background: rgba(37, 99, 235, 0.04);
+      border: 1px dashed rgba(191, 219, 254, 0.9);
+      font-size: 0.84rem;
+      color: #1d4ed8;
+    }
+
+    .about-quote strong {
+      display: block;
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .about-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .mission-card,
+    .style-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      border: 1px solid rgba(203, 213, 225, 0.9);
+    }
+
+    .mission-card h4,
+    .style-card h4 {
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+      color: #0f172a;
+    }
+
+    .mission-card p,
+    .style-card p {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .tag-chip {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(224, 231, 255, 0.9);
+      color: #1d4ed8;
+      border: 1px solid rgba(129, 140, 248, 0.4);
+    }
+
+    /* ================= PORTFOLIO ================= */
+
+    .portfolio {
+      position: relative;
+    }
+
+    .portfolio-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      cursor: pointer;
+      transform: translateY(0);
+      transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-fast);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform var(--transition-slow), filter var(--transition-slow);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.1));
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.9rem;
+      color: #e5e7eb;
+      transition: opacity var(--transition-fast);
+    }
+
+    .portfolio-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .portfolio-category {
+      font-size: 0.78rem;
+      color: #cbd5f5;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 55px rgba(15, 23, 42, 0.35);
+      border-color: rgba(37, 99, 235, 0.6);
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.02);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-quote {
+      margin-top: 1.6rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: #1d4ed8;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2.6rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(203, 213, 225, 0.9);
+    }
+
+    .contact-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      color: #0f172a;
+    }
+
+    .contact-card p {
+      font-size: 0.88rem;
+      color: #6b7280;
+      margin-bottom: 1.3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .field-group label {
+      font-size: 0.82rem;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    .field-group input,
+    .field-group textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(203, 213, 225, 0.9);
+      padding: 0.65rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      background: rgba(248, 250, 252, 0.9);
+      transition: border var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), transform 0.12s ease-out;
+      resize: vertical;
+      min-height: 42px;
+    }
+
+    .field-group textarea {
+      min-height: 110px;
+    }
+
+    .field-group input:focus,
+    .field-group textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1), 0 14px 30px rgba(15, 23, 42, 0.08);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 0.2rem;
+    }
+
+    .contact-info {
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-info::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      opacity: 0.14;
+      background: radial-gradient(circle at top left, #3b82f6, transparent 55%), radial-gradient(circle at bottom right, #22c55e, transparent 55%);
+    }
+
+    .contact-info-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-heading h3 {
+      font-size: 1.05rem;
+      color: #f9fafb;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.86rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .info-item span {
+      display: block;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .info-item strong {
+      color: #e5e7eb;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .social-pill {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .social-pill:hover {
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.65);
+    }
+
+    .contact-quote {
+      font-size: 0.78rem;
+      color: #cbd5f5;
+      margin-top: 0.7rem;
+      font-style: italic;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+      background: rgba(248, 250, 252, 0.96);
+      padding: 1.6rem 0;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+
+    .footer-contact span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .footer-social a {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      background: white;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border var(--transition-fast);
+    }
+
+    .footer-social a:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.5);
+    }
+
+    /* ================= ANIMATIONS: FADE ON SCROLL ================= */
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-section.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER / NAV ================= -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="#home" class="brand">
+          <div class="brand-icon">📸</div>
+          <div class="brand-text">Insta Photography</div>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+          <a href="javascript:void(0)" class="nav-cta" onclick="openBookingModal()">
+           Book a Slot <span>→</span>
+          </a>
+
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <main id="home" class="hero">
+    <div class="container hero-inner fade-section">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Capturing stories across Andhra Pradesh
+        </div>
+        <h1 class="hero-title">
+          Freeze your <span>moments</span>.  
+          Frame your <span>story.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Insta Photography by Karthik blends candid emotion and clean composition
+          to turn ordinary days into unforgettable visual memories.
+        </p>
+        <p class="hero-quote">
+          “Photography is the pause button for time — a single frame that lets every feeling breathe again.”
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-primary">
+            View Portfolio
+            <span>⟶</span>
+          </a>
+          <a href="#contact" class="btn-outline">
+            Let’s Talk
+            <span>💬</span>
+          </a>
+          <div class="mini-quote">
+            <span class="mini-dot"></span>
+            Light, shadows & emotions in every frame.
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-main-photo">
+            <!-- Replace with your own hero image later -->
+            <img src="images/portfolio/1000495242.jpg" alt="Photography showcase" />
+          </div>
+          <div class="photo-pills">
+            <div class="photo-pill">Portraits</div>
+            <div class="photo-pill">Weddings</div>
+            <div class="photo-pill">Street</div>
+            <div class="photo-pill">Travel</div>
+          </div>
+          <div class="hero-card-footer">
+            <div class="hero-note">
+              Moments <span>you feel</span>, frames you remember.
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span>200+</span>
+                Stories captured
+              </div>
+              <div class="hero-stat">
+                <span>5+</span>
+                Years behind lens
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-tag">
+            <div class="floating-tag-icon">✨</div>
+            <div>
+              <strong>“Every frame is a love letter to light.”</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="fade-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">About Insta Photography</p>
+        <h2 class="section-title">A lens that listens to your story</h2>
+        <p class="section-subtitle">
+          Founded and led by Karthik, Insta Photography is all about honest frames,
+          gentle colours and emotions that speak louder than words.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Our Story</h3>
+          <p>
+            Insta Photography started with a simple idea:  
+            <strong>every person deserves to see themselves as art.</strong>
+          </p>
+          <p>
+            What began as mobile clicks and Instagram posts slowly grew into a full-time
+            passion project — capturing weddings, portraits, travel diaries and quiet everyday moments.
+          </p>
+          <p>
+            Today, Insta Photography is a space where light, colour and emotion blend to build
+            timeless visual stories for families, couples and brands.
+          </p>
+
+          <div class="about-highlight">
+            “We don’t just click photos; we collect the tiny details your heart never wants to forget.”
+          </div>
+
+          <div class="about-quote">
+            Every session is designed to feel easy, natural and real —  
+            <strong>because your story looks best when you’re simply yourself.</strong>
+          </div>
+        </div>
+
+        <div class="about-side">
+          <div class="mission-card">
+            <h4>Meet Karthik – Photographer & Storyteller</h4>
+            <p>
+              Karthik is a passionate photographer from Andhra Pradesh who loves chasing
+              golden light, genuine smiles and unscripted emotions. His style mixes soft
+              tones, clean framing and candid storytelling to keep each picture fresh and modern.
+            </p>
+
+            <div class="about-meta">
+              <div class="meta-item">
+                <span>Based in</span>
+                <strong>Andhra Pradesh, India</strong>
+              </div>
+              <div class="meta-item">
+                <span>Style</span>
+                <strong>Candid · Minimal · Cinematic</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <h4>Our Mission</h4>
+            <p>
+              To create warm, cinematic photographs that feel personal today and priceless tomorrow —
+              images that your future self will thank you for.
+            </p>
+            <div class="tags-row">
+              <span class="tag-chip">Real Emotions</span>
+              <span class="tag-chip">Clean Aesthetics</span>
+              <span class="tag-chip">Timeless Stories</span>
+            </div>
+            <p class="about-highlight" style="margin-top:0.9rem;">
+              “Good photography doesn’t just show how it looked — it reminds you exactly how it felt.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO ================= -->
+  <section id="portfolio" class="portfolio fade-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Portfolio</p>
+        <h2 class="section-title">A glimpse into our frames</h2>
+        <p class="section-subtitle">
+          Scroll through a curated selection of work. Replace these placeholders with
+          your favourite shots to build your signature Insta Photography gallery.
+        </p>
+      </div>
+
+      <p class="portfolio-note">
+        “The best photos are the ones where you forget the camera is even there.”
+      </p>
+
+      <div class="portfolio-grid">
+        <!-- Use your own images later by changing the src URLs -->
+        <div class="portfolio-item" onclick="openLightbox('images/portfolio/download (3).jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/download (3).jpg" alt="Portrait photography"/>
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">Soft Portrait Glow</div>
+            <div class="portfolio-category">Portrait · Natural Light</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" 
+        onclick="openLightbox('images/portfolio/photo2.jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/photo2.jpg" alt="Wedding photography"/>
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">The Quiet Wedding Glance</div>
+            <div class="portfolio-category">Wedding · Candid</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item"
+        onclick="openLightbox('images/portfolio/download (4).jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/download (4).jpg" alt="Street photography" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">Street Stories at Dusk</div>s
+            <div class="portfolio-category">Street · Storytelling</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" 
+        onclick="openLightbox('images/portfolio/download (6).jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/download (6).jpg" alt="Travel photography" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">Hillside Sunsets</div>
+            <div class="portfolio-category">Travel · Landscape</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" 
+        onclick="openLightbox('images/portfolio/hossein_goshtasbi.jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/hossein_goshtasbi.jpg" alt="Couple photography" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">Hands That Tell Stories</div>
+            <div class="portfolio-category">Couple · Intimate</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" 
+        onclick="openLightbox('images/portfolio/LONDON TUBE.jpg')"
+        style="cursor:zoom-in;">
+          <img src="images/portfolio/LONDON TUBE.jpg" alt="Detail photography" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-title">Tiny Details · Big Feelings</div>
+            <div class="portfolio-category">Detail · Aesthetic</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="portfolio-quote">
+        “Every frame you see here began as a passing moment — captured, cared for and turned into a memory.”
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="fade-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Contact</p>
+        <h2 class="section-title">Let’s create something beautiful together</h2>
+        <p class="section-subtitle">
+          Whether it’s a wedding, portrait session, brand shoot or just a personal idea
+          you’re excited about — drop a message and we’ll build it visually.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-card">
+          <h3>Send a message</h3>
+          <p>
+            Share a few details and Karthik will get back to you as soon as possible
+            to discuss dates, ideas and pricing.
+          </p>
+
+          <form class="contact-form" id="contactForm">
+            <div class="field-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required />
+            </div>
+
+            <div class="field-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="yourname@example.com" required />
+            </div>
+
+            <div class="field-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your shoot, dates and ideas…" required></textarea>
+              <p class="form-note">“The more you share, the better we can plan your perfect visual story.”</p>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Submit Inquiry
+              <span>✉️</span>
+            </button>
+            <div id="formStatus" class="form-note" style="display:none;"></div>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <aside class="contact-info">
+          <div class="contact-info-inner">
+            <div class="contact-heading">
+              <h3>Direct contact</h3>
+              <div class="status-pill">
+                <span class="status-dot"></span>
+                Booking slots open
+              </div>
+            </div>
+
+            <ul class="info-list">
+              <li class="info-item">
+                <span>Photographer / Owner</span>
+                <strong>KARTHIK</strong>
+              </li>
+              <li class="info-item">
+                <span>Phone</span>
+                <strong><a href="tel:+919490738954">+91 94907 38954</a></strong>
+              </li>
+              <li class="info-item">
+                <span>Email</span>
+                <strong><a href="mailto:melomaneeditz54@gmail.com">melomaneeditz54@gmail.com</a></strong>
+              </li>
+              <li class="info-item">
+                <span>Location</span>
+                <strong>Adoni, Andhra Pradesh, India</strong>
+              </li>
+            </ul>
+
+            <div>
+              <span style="font-size:0.78rem;color:#9ca3af;">Social</span>
+              <div class="social-row" style="margin-top:0.3rem;">
+                <!-- Replace # with your real profile links -->
+                <a href="https://www.instagram.com/the__yash____?igsh=aTY1b3M4dml2N3Nr" class="social-pill">
+                  <span>📷</span> Instagram
+                </a>
+                <a href="https://www.facebook.com/share/1DRFoCYxof/" class="social-pill">
+                  <span>📘</span> Facebook
+                </a>
+                <a href="#" class="social-pill">
+                  <span>▶️</span> YouTube
+                </a>
+              </div>
+            </div>
+
+            <p class="contact-quote">
+              “Great photographs happen when you relax, breathe and simply be yourself.  
+              The camera will do the rest.”
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        © <span id="year"></span> Insta Photography. All rights reserved.
+      </div>
+      <div class="footer-contact">
+        <span>📍 Andhra Pradesh</span>
+        <span>📞 <a href="tel:+919490738954">+91 94907 38954</a></span>
+        <span>✉️ <a href="mailto:melomaneeditz54@gmail.com">melomaneeditz54@gmail.com</a></span>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Email">✉️</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    const navCta = document.getElementById("navCta");
+
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      navLinks.classList.toggle("mobile-open");
+      navCta.classList.toggle("mobile-open");
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navToggle.classList.remove("active");
+        navLinks.classList.remove("mobile-open");
+        navCta.classList.remove("mobile-open");
+      });
+    });
+
+    // Fade-in sections on scroll
+    const fadeSections = document.querySelectorAll(".fade-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    fadeSections.forEach((section) => observer.observe(section));
+
+    // Simple contact form handler (front-end only)
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      formStatus.style.display = "block";
+      formStatus.textContent = "Thank you! Your message has been recorded. You can connect directly on WhatsApp or Email for faster replies.";
+      contactForm.reset();
+    });
+
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // Booking Modal Functions
+function openBookingModal() {
+  document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeBookingModal() {
+  document.getElementById("bookingModal").style.display = "none";
+}
+// ✅ Booking Modal Functions
+function openBookingModal() {
+  document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeBookingModal() {
+  document.getElementById("bookingModal").style.display = "none";
+}
+
+// ✅ Attach booking form event AFTER page loads
+window.addEventListener("DOMContentLoaded", () => {
+  const bookingForm = document.getElementById("bookingForm");
+
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("bkName").value;
+    const eventName = document.getElementById("bkEvent").value;
+    const date = document.getElementById("bkDate").value;
+    const location = document.getElementById("bkLocation").value;
+    const duration = document.getElementById("bkDuration").value;
+
+    const subject = encodeURIComponent("New Photography Booking Request");
+
+    const body = encodeURIComponent(
+      "New Booking Request Details\n\n" +
+      "Name: " + name + "\n" +
+      "Event: " + eventName + "\n" +
+      "Date: " + date + "\n" +
+      "Location: " + location + "\n" +
+      "Duration: " + duration
+    );
+
+    // ✅ FORCE email client opening
+    window.location.href =
+      "mailto:melomaneeditz54@gmail.com?subject=" +
+      subject +
+      "&body=" +
+      body;
+
+    closeBookingModal();
+  });
+});
+// ✅ FINAL LIGHTBOX FIX
+function openLightbox(src) {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+
+  img.src = src;
+  lightbox.style.display = "flex";
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+
+  img.src = "";
+  lightbox.style.display = "none";
+}
+function handleBookingSubmit(event) {
+  event.preventDefault();
+
+  // submit to Google Form
+  document.getElementById("bookingForm").submit();
+
+  // UI feedback
+  setTimeout(() => {
+    alert("✅ Booking request sent successfully!");
+    closeBookingModal();
+    document.getElementById("bookingForm").reset();
+  }, 700);
+}
+</script>
+
+  <!-- Booking Modal -->
+<div id="bookingModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,0.75);
+  z-index:999;
+  align-items:center;
+  justify-content:center;
+">
+
+  <div style="
+    background:#ffffff;
+    padding:24px;
+    width:90%;
+    max-width:420px;
+    border-radius:16px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.3);
+    position:relative;
+  ">
+
+    <h3 style="margin-bottom:12px;color:#0f172a;">Book Your Slot</h3>
+
+    <form
+  id="bookingForm"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSfT3F5ayRZURnk4etESrMH6UKjd2MIHZ7y-j9Z8hoRPZulzpg/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="handleBookingSubmit(event)"
+>
+
+  <input
+    name="entry.550389968"
+    placeholder="Your Name"
+    required
+    style="width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;"
+  >
+
+  <input
+    name="entry.415201903"
+    placeholder="Event"
+    required
+    style="width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;"
+  >
+
+  <!-- You can keep date picker OR change to text -->
+  <input
+    name="entry.413289444"
+    placeholder="Event date"
+    required
+    style="width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;"
+  >
+
+  <input
+    name="entry.2075990201"
+    placeholder="Location"
+    required
+    style="width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;"
+  >
+
+  <input
+    name="entry.1340269373"
+    placeholder="Duration (eg: 3 hours)"
+    required
+    style="width:100%;margin-bottom:14px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;"
+  >
+
+  <button type="submit" style="
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:999px;
+    background:#2563eb;
+    color:#ffffff;
+    font-size:15px;
+    cursor:pointer;
+  ">
+    Send Booking Request
+  </button>
+
+</form>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+
+
+    <button onclick="closeBookingModal()" style="
+      position:absolute;
+      top:10px;
+      right:14px;
+      background:none;
+      border:none;
+      font-size:20px;
+      cursor:pointer;
+    ">×</button>
+  </div>
+</div>
+<!-- ✅ FIXED PORTFOLIO LIGHTBOX -->
+<div id="lightbox" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+">
+
+  <img id="lightbox-img" src="" style="
+    max-width:90%;
+    max-height:90%;
+    object-fit:contain;
+    display:block;
+    border-radius:12px;
+  ">
+
+  <button onclick="closeLightbox()" style="
+    position:fixed;
+    top:20px;
+    right:30px;
+    font-size:32px;
+    background:none;
+    border:none;
+    color:white;
+    cursor:pointer;
+  ">
+    ×
+  </button>
+</div>
+</body>
+</html>
+```
